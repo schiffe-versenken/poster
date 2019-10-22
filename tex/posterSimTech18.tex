@@ -102,7 +102,7 @@
 
 % The Poster title
 \setTitle{High-Dimensional Battleship-\\[10pt] 
-          \huge{discretization methods as \\[10pt]strategies}}
+          \huge{comparsion of shooting \\[10pt]strategies}}
 
 % The Poster subtitle
 %\setSubTitle{SimTech}
@@ -114,7 +114,7 @@
 
 
 % Institute information/address
-\setInst{Institut for Parallel and Distributed Systems (IPVS)\\[2pt]
+\setInst{Institute for Parallel and Distributed Systems (IPVS)\\[2pt]
 Simulation Software Engineering\\[2pt]
 Universitätsstr. 38, D-70569 Stuttgart, Germany \\[2pt]
 schniccr@ipvs.uni-stuttgart.de\\[2pt]
@@ -174,47 +174,29 @@ Objective: \textbf{Investigate} the \textbf{functionality} of high-dimensional b
 \item Redefine terms like \textbf{ship, flee}t and shooting \textbf{strategies}.
 \item Evaluation of strategies requires many sample fleets and even more ships.
 \item A \textbf{Monte-Carlo approach} reduces the computation cost significantly while still allowing a decent impression of the quality of the strategy.
-\item Firstly we use an algorithm to compute the number of shots to sink a random ship.
-\end{itemize}
-
-\begin{algorithm}[H]
-	\caption*{Calculating number of shots/turns to sink a random ship}\label{alg:calcTurns}
-	\begin{algorithmic}
-		\Procedure{calcTurns}{$n,\text{strat}$}
-		\State $\Omega_L = generate\_random\_ships(n)$  
-		\Comment{Generate $n$ random ships}
-		\State $turns = [1,\dots,|C_{all}|]$
-		\State $sum = 0$
-		\For{$i=1,\dots,n$} 
-		\State $min = min_{c\in cells(\Omega_L[i])}I_{strat}(c)$
-		\State $turns[min]++$
-		\EndFor
-		\State \textbf{return} $turns$
-		\EndProcedure
-	\end{algorithmic}
-\end{algorithm}
-
-\begin{itemize}
-\item By using the previous algorithm we can calculate the \textbf{distribution function} of the strategy for a sample.
+\item Firstly we use an algorithm to compute the number of shots $v$ to sink a random ship.
+\item With this algorithm we can then calculate the \textbf{distribution function} $P(\mathbf{T}^{\Omega_L}_{\text{strat}} \leq v)$ of the strategy for a sample $\Omega_L$.
 \item The Monte-Carlo approach now assumes that this distribution resembles the distribution for all possible ships.
 \end{itemize}
 
-\begin{algorithm}[H]
-	\caption*{Calculating distribution function of a strategy}\label{alg:evaluateStrat}
-	\begin{algorithmic}
-		\Procedure{evaluate\_strategy}{$n, \text{strat}$}
-		\State $turns = calculate\_turns(n, \text{strat})$;
-		\State $ship\_sum=0$;
-		\For{$i=1,\dots,|C_{all}|$}
-		\State $ships=turns[i]$;
-		\State $ship\_sum += ships$;
-		\State $P(\mathbf{T}^{\Omega_L}_{\text{strat}} \leq i)=\frac{ship\_sum}{n}$;
-		\State $P(\mathbf{X}^{F_{all}}_{\text{strat}} \leq i)=\frac{2^{\left(P(\mathbf{T}^{\Omega_L}_{\text{strat}} \leq i) * |L_{all}|\right)} - 1}{2^{|L_{all}|} - 1}$;
-		\EndFor
-		\EndProcedure
-	\end{algorithmic}
-\end{algorithm}
+\begin{equation}
+	P(\mathbf{T}^{\Omega_L}_{\text{strat}} \leq v) \approx P(\mathbf{T}^{L_{all}}_{\text{strat}} \leq v)
+\end{equation}
 
+\begin{itemize}
+	\item Note: Careful when discretizing ships as shown in \cite{MF}, there are many continuous ships that represent the same discrete ship as seen in figure \ref{fig:ships01}.
+\end{itemize}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.4\textwidth]{../gfx/Ships01.png}
+	\caption{Difference continuous to discrete ships}
+	\label{fig:ships01}
+\end{figure}
+
+\begin{itemize}
+	\item The red and blue continuous ships in figure \ref{fig:ships01} assign to the same discrete ship represented by the six dots.
+\end{itemize}
 
 \section{Strategies}
 For shooting strategies we want to orientate us at \textbf{discretization methods} since they are easily adapted to high dimensions. For that matter we came up with \textbf{five different strategies}. In general grid startegies use the following partitioning:
@@ -224,8 +206,8 @@ For shooting strategies we want to orientate us at \textbf{discretization method
 	\caption{Halving of the grid coordinates}
 \end{figure}
 \begin{itemize}
-\item Random Strategy: Shoots at a random cell of the hypercube. This is the closest strategy to the reality since most battleship players target random cells.
-\item Full Grid Strategy: Shoots cells according to the discretization given by a full grid.
+\item \textbf{Random Strategy}: Shoots at a random cell of the hypercube. This is the closest strategy to the reality since most battleship players target random cells.
+\item \textbf{Full Grid Strategy}: Shoots cells according to the discretization given by a full grid.
 \end{itemize}
 
 
@@ -266,7 +248,7 @@ For shooting strategies we want to orientate us at \textbf{discretization method
 
 \justifying
 \begin{itemize}
-	\item Sparse Grid Strategy: Shoots cells according to the discretization given by a sparse grid.
+	\item \textbf{Sparse Grid Strategy}: Shoots cells according to the discretization given by a sparse grid.
 \end{itemize}
 \begin{figure}[h]
 	\centering
@@ -274,13 +256,13 @@ For shooting strategies we want to orientate us at \textbf{discretization method
 	\caption{Structure of Sparse Grid Strategy}
 \end{figure}
 \begin{itemize}
-	\item Sobol Strategy: This strategy shoots according to the pseudorandom Sobol number sequence which is based on polynomials in $\mathbb{Z}_2$. The definitions and algorithms are based on \cite{JK}.
-	\item Halton Strategy: Here the strategy is based on onedimensional number sequences of fractions of primes which we combine to multidimensional coodinates.
+	\item \textbf{Sobol Strategy}: This strategy shoots according to the pseudorandom Sobol number sequence which is based on polynomials in $\mathbb{Z}_2$. The definitions and algorithms are based on \cite{JK}.
+	\item \textbf{Halton Strategy}: Here the strategy is based on onedimensional number sequences of fractions of primes which we combine to multidimensional coodinates.
 \end{itemize}
 
-\subsection{Results}
+\section{Results}
 
-After computing the results for the different strategies with varying dimensions and sample sizes we can compare them now. 
+After computing the results for the different strategies with \textbf{varying dimensions} and \textbf{sample sizes} we can compare them now. 
 
 \begin{figure}[h]
 	\centering
@@ -289,13 +271,12 @@ After computing the results for the different strategies with varying dimensions
 	\label{fig:comp01}
 \end{figure}
 
-In figure \ref{fig:comp01} we see, that the Halton Strategy for 7 dimensions overtakes Sobol. This implies the same for 8 dimensions. Which is why we conclude that the Halton Strategy performs the best out of all the tested strategies. Note: The goal of the curves is to reach the top as fast as possible.
-This conclusion is also confirmed by figure \ref{fig:comp02} in which the total number of necessary shots is lowest for the Halton Strategy.
-
+In figure \ref{fig:comp01} we see, that the Halton Strategy for 7 dimensions overtakes Sobol. This implies the same for 8 dimensions. Which is why we conclude that the \textbf{Halton Strategy performs the best} out of all the tested strategies. Note: The goal of the curves is to reach the top as fast as possible.
+This conclusion is also confirmed by the expected value of shots that a strategy needs in which Halton generally needs \textbf{$3\cdot10^6$ less shots} in 8 dimensions than other strategies.
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.7\textwidth]{../gfx/Compare02.png}
-	\caption{Comparsion number of shots for random fleet}
+	\includegraphics[width=\textwidth]{../gfx/Compare03.png}
+	\caption{Comparsion Strategies for random ship distribution}
 	\label{fig:comp02}
 \end{figure}
 

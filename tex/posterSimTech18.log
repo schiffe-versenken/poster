@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/W32TeX) (preloaded format=pdflatex 2018.10.23)  22 OCT 2019 14:10
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/W32TeX) (preloaded format=pdflatex 2018.10.23)  22 OCT 2019 15:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1524,56 +1524,51 @@ Overfull \hbox (907.79121pt too wide) in paragraph at lines 158--158
 [][]  
  []
 
+LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <20.9019> not available
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 298.
+LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <14.93> not available
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 298.
+<../gfx/Ships01.png, id=20, 613.54219pt x 603.0028pt>
+File: ../gfx/Ships01.png Graphic file (type png)
+<use ../gfx/Ships01.png>
+Package pdftex.def Info: ../gfx/Ships01.png  used on input line 298.
+(pdftex.def)             Requested size: 384.12134pt x 377.5199pt.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <24.88> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 317.
-LaTeX Font Info:    Font shape `T1/phv/m/it' in size <24.88> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 317.
-LaTeX Font Info:    Font shape `T1/phv/m/it' in size <20.74> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 317.
-LaTeX Font Info:    Font shape `T1/phv/m/it' in size <17.28> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 317.
-LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <20.74> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 317.
-LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <17.28> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 317.
-<../gfx/Grids03.png, id=18, 582.67688pt x 598.48593pt>
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 298.
+<../gfx/Grids03.png, id=22, 582.67688pt x 598.48593pt>
 File: ../gfx/Grids03.png Graphic file (type png)
 <use ../gfx/Grids03.png>
-Package pdftex.def Info: ../gfx/Grids03.png  used on input line 317.
+Package pdftex.def Info: ../gfx/Grids03.png  used on input line 298.
 (pdftex.def)             Requested size: 288.09833pt x 295.91812pt.
-<../gfx/Grids04.png, id=19, 1218.80344pt x 313.17pt>
+<../gfx/Grids04.png, id=23, 1218.80344pt x 313.17pt>
 File: ../gfx/Grids04.png Graphic file (type png)
 <use ../gfx/Grids04.png>
-Package pdftex.def Info: ../gfx/Grids04.png  used on input line 317.
+Package pdftex.def Info: ../gfx/Grids04.png  used on input line 298.
 (pdftex.def)             Requested size: 960.31801pt x 246.76125pt.
-<../gfx/Grids05.png, id=20, 1166.10657pt x 621.82312pt>
+<../gfx/Grids05.png, id=24, 1166.10657pt x 621.82312pt>
 File: ../gfx/Grids05.png Graphic file (type png)
 <use ../gfx/Grids05.png>
-Package pdftex.def Info: ../gfx/Grids05.png  used on input line 317.
+Package pdftex.def Info: ../gfx/Grids05.png  used on input line 298.
 (pdftex.def)             Requested size: 960.31801pt x 512.09953pt.
-LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <20.9019> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 317.
-LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <14.93> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 317.
-<../gfx/Compare01.png, id=22, 1135.99406pt x 433.62pt>
+<../gfx/Compare01.png, id=26, 1135.99406pt x 433.62pt>
 File: ../gfx/Compare01.png Graphic file (type png)
 <use ../gfx/Compare01.png>
-Package pdftex.def Info: ../gfx/Compare01.png  used on input line 317.
+Package pdftex.def Info: ../gfx/Compare01.png  used on input line 298.
 (pdftex.def)             Requested size: 960.31801pt x 366.57394pt.
-<../gfx/Compare02.png, id=25, 1068.24094pt x 642.14906pt>
-File: ../gfx/Compare02.png Graphic file (type png)
-<use ../gfx/Compare02.png>
-Package pdftex.def Info: ../gfx/Compare02.png  used on input line 317.
-(pdftex.def)             Requested size: 672.21967pt x 404.10532pt.
+<../gfx/Compare03.png, id=28, 1967.85187pt x 983.17313pt>
+File: ../gfx/Compare03.png Graphic file (type png)
+<use ../gfx/Compare03.png>
+Package pdftex.def Info: ../gfx/Compare03.png  used on input line 298.
+(pdftex.def)             Requested size: 960.31801pt x 479.7938pt.
 (./posterSimTech18.bbl)
 File: ../gfx/logo_uni_english.pdf Graphic file (type pdf)
 <use ../gfx/logo_uni_english.pdf>
-Package pdftex.def Info: ../gfx/logo_uni_english.pdf  used on input line 317.
+Package pdftex.def Info: ../gfx/logo_uni_english.pdf  used on input line 298.
 (pdftex.def)             Requested size: 668.88728pt x 153.79068pt.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <8> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 317.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 298.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <6> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 317.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 298.
 
 Overfull \hbox (165.11328pt too wide) has occurred while \output is active
 []|  []  
@@ -1586,17 +1581,17 @@ Overfull \hbox (907.79121pt too wide) has occurred while \output is active
 
 File: ../gfx/ipvs_logo.png Graphic file (type png)
 <use ../gfx/ipvs_logo.png>
-Package pdftex.def Info: ../gfx/ipvs_logo.png  used on input line 317.
+Package pdftex.def Info: ../gfx/ipvs_logo.png  used on input line 298.
 (pdftex.def)             Requested size: 118.33885pt x 118.33885pt.
 File: ../gfx/sgslogo-250x250.png Graphic file (type png)
 <use ../gfx/sgslogo-250x250.png>
-Package pdftex.def Info: ../gfx/sgslogo-250x250.png  used on input line 317.
+Package pdftex.def Info: ../gfx/sgslogo-250x250.png  used on input line 298.
 (pdftex.def)             Requested size: 118.33885pt x 118.33885pt.
 [1{d:/TeXLive/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
- <../gfx/logo_uni_english.pdf> <../gfx/Grids03.png> <../gfx/Grids04.png> <../gf
-x/Grids05.png> <../gfx/Compare01.png> <../gfx/Compare02.png> <../gfx/ipvs_logo.
-png> <../gfx/sgslogo-250x250.png>]
+ <../gfx/logo_uni_english.pdf> <../gfx/Ships01.png> <../gfx/Grids03.png> <../gf
+x/Grids04.png> <../gfx/Grids05.png> <../gfx/Compare01.png> <../gfx/Compare03.pn
+g> <../gfx/ipvs_logo.png> <../gfx/sgslogo-250x250.png>]
 \tf@nav=\write6
 \openout6 = `posterSimTech18.nav'.
 
@@ -1606,11 +1601,11 @@ png> <../gfx/sgslogo-250x250.png>]
 \tf@snm=\write8
 \openout8 = `posterSimTech18.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 318.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 318.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 299.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 299.
  (./posterSimTech18.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 318.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 318.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 299.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 299.
 Package rerunfilecheck Info: File `posterSimTech18.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 
@@ -1620,26 +1615,24 @@ LaTeX Font Warning: Size substitutions with differences
 
  ) 
 Here is how much of TeX's memory you used:
- 34251 strings out of 492639
- 654680 string characters out of 6133087
- 793972 words of memory out of 5000000
- 37459 multiletter control sequences out of 15000+600000
- 632819 words of font info for 150 fonts, out of 8000000 for 9000
+ 34197 strings out of 492639
+ 653923 string characters out of 6133087
+ 789504 words of memory out of 5000000
+ 37411 multiletter control sequences out of 15000+600000
+ 606957 words of font info for 116 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  65i,21n,100p,905b,1276s stack positions out of 5000i,500n,10000p,200000b,80000s
 {d:/TeXLive/texlive/2018/texmf-dist/fonts/enc/dvips/base/8r.enc}<d:/TeXLive/t
-exlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><d:/TeXLive/te
-xlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><d:/TeXLive/tex
-live/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmss17.pfb><d:/TeXLive/texl
-ive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><d:/TeXLive/texli
-ve/2018/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><d:/TeXLive/t
-exlive/2018/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb><d:/TeXLive/texlive/
-2018/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><d:/TeXLive/texlive/2018/te
-xmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on posterSimTech18.pdf (1 page, 230220 bytes).
+exlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmss17.pfb><d:/TeXLive/te
+xlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><d:/TeXLive/tex
+live/2018/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><d:/TeXLive
+/texlive/2018/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb><d:/TeXLive/texliv
+e/2018/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><d:/TeXLive/texlive/2018/
+texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
+Output written on posterSimTech18.pdf (1 page, 327105 bytes).
 PDF statistics:
- 85 PDF objects out of 1000 (max. 8388607)
- 55 compressed objects within 1 object stream
- 9 named destinations out of 1000 (max. 500000)
- 83 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 79 PDF objects out of 1000 (max. 8388607)
+ 50 compressed objects within 1 object stream
+ 8 named destinations out of 1000 (max. 500000)
+ 88 words of extra memory for PDF output out of 10000 (max. 10000000)
 
