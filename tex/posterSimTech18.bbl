@@ -1,0 +1,13 @@
+\begin{thebibliography}{1}
+
+\bibitem{MF}
+Mehlbeer F.
+\newblock Hierarchische methoden am beispiel von schiffe versenken, 06 2013.
+
+\bibitem{JK}
+Joe S. and Kuo~F. Y.
+\newblock Remark on algorithm 659: Implementing sobol's quasirandom sequence
+  generator.
+\newblock {\em ACM Transactions on Mathematical Software}, 29:49--57, 2003.
+
+\end{thebibliography}

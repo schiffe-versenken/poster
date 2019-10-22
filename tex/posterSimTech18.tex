@@ -101,28 +101,29 @@
 %----------------------------------------------------------------------------------------
 
 % The Poster title
-\setTitle{High Dimensional Surrogates\\[10pt] 
-          with B-Splines for Uncertainty Quantification}
+\setTitle{High-Dimensional Battleship-\\[10pt] 
+          \huge{discretization methods as \\[10pt]strategies}}
 
 % The Poster subtitle
 %\setSubTitle{SimTech}
 
 % Logo subtext (uncomment for Germany-Subtext with english logo)
 %\setLogoText{SimTech Cluster of Excellence}
-\setLogoText{Cluster of Excellence in Simulation Technology}
+%\setLogoText{Cluster of Excellence in Simulation Technology}
 
 
 
 % Institute information/address
 \setInst{Institut for Parallel and Distributed Systems (IPVS)\\[2pt]
-Simulation of Large Systems (SGS)\\[2pt]
+Simulation Software Engineering\\[2pt]
 Universitätsstr. 38, D-70569 Stuttgart, Germany \\[2pt]
-michael.rehme@ipvs.uni-stuttgart.de
+schniccr@ipvs.uni-stuttgart.de\\[2pt]
+kreittds@ipvs.uni-stuttgart.de
 }
 
 % Author name
 %\setName{\mbox{Michael Rehme}  \\[4pt] Dirk Pflüger}
-\setName{\underline{Michael}\\[4pt] \underline{Rehme}\\[4pt]  \ \\[4pt] Dirk \\[4pt] Pflüger}
+\setName{\large{\underline{Christopher}\\[4pt] \underline{Schnick}\\[4pt]  \ \underline{Dennis}\\[4pt] \underline{Kreittner}\\[1pt]  \  Dirk \\[4pt] Pflüger}}
 
 % uncommand for individual footer layout
  \setFooter{
@@ -144,9 +145,9 @@ michael.rehme@ipvs.uni-stuttgart.de
        % {\bfseries\large www.simtech.uni-stuttgart.de}
      };
      %right aligned footer-content (image)
-     \node[anchor=south east, align=right, yshift=0.01\paperwidth, xshift=-0.066\paperwidth] at (current page.south east) {
-       \includegraphics[height=0.035\paperheight]{../gfx/logo_simtech.pdf}
-     };
+     %\node[anchor=south east, align=right, yshift=0.01\paperwidth, xshift=-0.066\paperwidth] at (current page.south east) {
+     %  \includegraphics[height=0.035\paperheight]{../gfx/logo_simtech.pdf}
+     %};
  \end{tikzpicture}
  }
 
@@ -166,44 +167,68 @@ michael.rehme@ipvs.uni-stuttgart.de
 %----------------------------------------------------------------------------------------
 
 \justifying
-\section{Motivation}
-Objective: Construct \textbf{smooth} surrogates for expensive \textbf{high dimensional} models with as few evaluations of these models as possible.
+\section{Motivation and Approach}
+Objective: \textbf{Investigate} the \textbf{functionality} of high-dimensional battleships. \textbf{Realize} and \textbf{compare} possible shooting \textbf{strategies} based on discretization methods. The general idea for this topic comes from \cite{MF}.
 \begin{itemize} 
-\item Evaluating the surrogates is much \textbf{faster} than evaluating the original model but provides almost the same results.
-\item We use the \textbf{combination technique} and \textbf{Sparse Grids} to overcome the curse of dimensionality.
+\item Adapt classic battleship to a \textbf{high-dimensional hypercube}.
+\item Redefine terms like \textbf{ship, flee}t and shooting \textbf{strategies}.
+\item Evaluation of strategies requires many sample fleets and even more ships.
+\item A \textbf{Monte-Carlo approach} reduces the computation cost significantly while still allowing a decent impression of the quality of the strategy.
+\item Firstly we use an algorithm to compute the number of shots to sink a random ship.
 \end{itemize}
 
-\begin{figure}[h]
-\centering
-\begin{subfigure}{.47\textwidth}
-  \centering
-  \tikz[remember picture]\node[inner sep=0pt,outer sep=0pt] (a){\includegraphics[width=.85\linewidth]{subgrids3.png}};
-  \caption*{Subgrid scheme for the combination technique.}
-\end{subfigure}%
-\begin{subfigure}{.47\textwidth}
-  \centering
-  \tikz[remember picture]\node[inner sep=0pt,outer sep=0pt] (b){\includegraphics[width=.85\linewidth]{grid3.png}};
-  \caption*{Corresponding hierarchical Sparse Grid.}
-\end{subfigure}
-\tikz[remember picture,overlay]\draw[line width=4pt,-stealth,black] ([xshift=2mm]a.east) -- ([xshift=-2mm]b.west);
-\caption{Combination technique and Sparse Grid.}
-\end{figure}
+\begin{algorithm}[H]
+	\caption*{Calculating number of shots/turns to sink a random ship}\label{alg:calcTurns}
+	\begin{algorithmic}
+		\Procedure{calcTurns}{$n,\text{strat}$}
+		\State $\Omega_L = generate\_random\_ships(n)$  
+		\Comment{Generate $n$ random ships}
+		\State $turns = [1,\dots,|C_{all}|]$
+		\State $sum = 0$
+		\For{$i=1,\dots,n$} 
+		\State $min = min_{c\in cells(\Omega_L[i])}I_{strat}(c)$
+		\State $turns[min]++$
+		\EndFor
+		\State \textbf{return} $turns$
+		\EndProcedure
+	\end{algorithmic}
+\end{algorithm}
 
 \begin{itemize}
-\item We use \textbf{not-a-knot B-spline} basis functions to obtain smooth interpolants.
+\item By using the previous algorithm we can calculate the \textbf{distribution function} of the strategy for a sample.
+\item The Monte-Carlo approach now assumes that this distribution resembles the distribution for all possible ships.
 \end{itemize}
 
+\begin{algorithm}[H]
+	\caption*{Calculating distribution function of a strategy}\label{alg:evaluateStrat}
+	\begin{algorithmic}
+		\Procedure{evaluate\_strategy}{$n, \text{strat}$}
+		\State $turns = calculate\_turns(n, \text{strat})$;
+		\State $ship\_sum=0$;
+		\For{$i=1,\dots,|C_{all}|$}
+		\State $ships=turns[i]$;
+		\State $ship\_sum += ships$;
+		\State $P(\mathbf{T}^{\Omega_L}_{\text{strat}} \leq i)=\frac{ship\_sum}{n}$;
+		\State $P(\mathbf{X}^{F_{all}}_{\text{strat}} \leq i)=\frac{2^{\left(P(\mathbf{T}^{\Omega_L}_{\text{strat}} \leq i) * |L_{all}|\right)} - 1}{2^{|L_{all}|} - 1}$;
+		\EndFor
+		\EndProcedure
+	\end{algorithmic}
+\end{algorithm}
+
+
+\section{Strategies}
+For shooting strategies we want to orientate us at \textbf{discretization methods} since they are easily adapted to high dimensions. For that matter we came up with \textbf{five different strategies}. In general grid startegies use the following partitioning:
 \begin{figure}[h]
-\includegraphics[]{nakBsplineBasis_33.png}
-\caption{Not-a-knot B-splines of level 4 and degree 3.}
+	\centering
+	\includegraphics[width=0.3\textwidth]{../gfx/Grids03.png}
+	\caption{Halving of the grid coordinates}
 \end{figure}
+\begin{itemize}
+\item Random Strategy: Shoots at a random cell of the hypercube. This is the closest strategy to the reality since most battleship players target random cells.
+\item Full Grid Strategy: Shoots cells according to the discretization given by a full grid.
+\end{itemize}
 
 
-\section{Variance Adaptive Refinement}
-For the CO$_2$ storage benchmark we want to calculate the \textbf{variance} of the surrogate. Therefore we use the combinations $\Delta_m$ of the variances $v_\ell$ on level $\ell\in\mathbb{N}^d$, as refinement indicators.
-\begin{align*}
-\Delta_m &= \sum_{\ell \in \mathcal{P}_m} \left( \sum_{ \textbf{0} \leq\alpha \leq \textbf{1}} (-1)^{ \vert \alpha \vert_1}  		v_{\ell - \alpha}\right),\\ \mathcal{P}_m &= \lbrace k \in \mathbb{N}^d: k_i \leq m_i\ \forall i\in \lbrace 1,\dots,d\rbrace\rbrace
-\end{align*}
 
 %implemented the following algorithm to create a variance adaptive level structure:
 %\begin{itemize}
@@ -213,27 +238,7 @@ For the CO$_2$ storage benchmark we want to calculate the \textbf{variance} of t
 %\item Add the level with highest priority until the maximum number of points is reached.
 %\end{itemize}
 
-\begin{algorithm}[H]
-\caption*{Predictive Variance Adaptive Refinement}\label{alg:refine}
-\begin{algorithmic}
-\Procedure{PVAR}{$M$}\Comment{maximum number of grid points $M$}
-\State $\mathcal{L} \leftarrow \lbrace \textbf{0} \rbrace$  
-\Comment{initialize level structure $\mathcal{L}$}
-\While{$\sum_{\ell \in \mathcal{L} } N(\ell) < M$} 
-\Comment{$N(\ell)$ number of grid points of level $\ell$}
-\State $\mathcal{F} \leftarrow \lbrace \ell \in \mathbb{N}^d:\ell - e_k \in \mathcal{L}, k\in \lbrace1,\dots,d\rbrace \rbrace$  
-\Comment{set of forward neighbors of $\mathcal{L}$}
-\For{$\ell \in \mathcal{F} $} 
-\State $\mathcal{B}_\ell \leftarrow \lbrace \ell - e_k \in \mathcal{L}:k\in\lbrace1,\dots,d\rbrace,\ell_k>0\rbrace$ \Comment{set of backward neighbors of $\ell$}  
-\State{$p_\ell = \nicefrac{1}{\vert \mathcal{B}_\ell \vert} \sum_{m \in \mathcal{B}_\ell} \nicefrac{\vert \Delta_m \vert}{ N(m)}$} \Comment{priorities $p_\ell$}
-\State $\mathcal{L} \leftarrow \mathcal{L} \cup argmax_{\ell \in \mathcal{F}} p_\ell$ 
-\Comment{add the best candidate to the level structure}
-\EndFor
-\EndWhile
-\State \textbf{return} $\mathcal{L}$
-\EndProcedure
-\end{algorithmic}
-\end{algorithm}
+
 
 
 %\begin{itemize}  	
@@ -242,27 +247,10 @@ For the CO$_2$ storage benchmark we want to calculate the \textbf{variance} of t
 
 \begin{figure}[h]
 \centering
-%\begin{subfigure}{.47\textwidth}
-%\centering
-	\input{../gfx/AdaptivityScheme.tex}
-%\end{subfigure}
-%\begin{subfigure}{.47\textwidth}
-%\centering
-%	\begin{align*}
-%		\Delta_m &= \sum_{\ell \in \Psi_m} \left( \sum_{ \textbf{0} \leq\alpha \leq \textbf{1}} (-1)^{ \vert \alpha \vert_1}  		v_{\ell - \alpha}\right)\\
-%		\ \\
-%		p_n &= \frac{1}{\vert \psi_n\vert} \sum_{m \in \psi_n} \frac{\vert \Delta_m \vert}{ N(m)}\\
-%		\ \\
-%	\end{align*}
-%\end{subfigure}
-\caption{Scheme of the variance adaptive refinement.}
+\includegraphics[width=\textwidth]{../gfx/Grids04.png}
+\caption{Structure of Full Grid Strategy}
 \end{figure}
 
-\begin{itemize}
-\item We  calculate the final variances on the hierarchical sparse grid corresponding to the adaptively created level structure to reduce the computation time from \textbf{$\mathcal{O}( \vert CT \vert^2)$} to \textbf{$\mathcal{O}(\vert SG \vert^2)$}. \\
-\small{$\vert CT \vert$ overall number of points of the combination technique level structure.\\
-  	$\vert SG \vert$ number of hierarchical sparse grid points.}
-\end{itemize}
 
 
 %----------------------------------------------------------------------------------------
@@ -277,55 +265,38 @@ For the CO$_2$ storage benchmark we want to calculate the \textbf{variance} of t
 %----------------------------------------------------------------------------------------
 
 \justifying
-\section{CO$_2$ Storage Benchmark }
-As a real world application we examine a benchmark for risk estimation in subterranean CO$_2$ storage. The according model is described in \cite{CO2}.
-\subsection{Description}
-\begin{figure}
-\includegraphics[width=0.8\textwidth]{benchmark.pdf}
-\caption{A cross-section of the benchmark example.}
-\end{figure}
-
 \begin{itemize}
-\item CO$_2$ is injected into a subsurface aquifer, the CO$_2$ starts spreading and reaches a leaky well. Some of the CO$_2$ escapes back to the atmosphere.
-\item We are interested in \textbf{expectation value} and \textbf{variance} of the amount of escaping CO$_2$ to decide on the suitability of the CO$_2$ deposit.
-\item The underlying multiphase flow processes are highly nonlinear. Therefore solving the models PDEs is very time consuming.
+	\item Sparse Grid Strategy: Shoots cells according to the discretization given by a sparse grid.
+\end{itemize}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\textwidth]{../gfx/Grids05.png}
+	\caption{Structure of Sparse Grid Strategy}
+\end{figure}
+\begin{itemize}
+	\item Sobol Strategy: This strategy shoots according to the pseudorandom Sobol number sequence which is based on polynomials in $\mathbb{Z}_2$. The definitions and algorithms are based on \cite{JK}.
+	\item Halton Strategy: Here the strategy is based on onedimensional number sequences of fractions of primes which we combine to multidimensional coodinates.
 \end{itemize}
 
-\subsection{Numerical Results}
+\subsection{Results}
 
-We extended the framework developed for \cite{FF} and created surrogates for the CO$_2$ storage benchmark based on different grid structures and basis functions.
+After computing the results for the different strategies with varying dimensions and sample sizes we can compare them now. 
 
-\tikzstyle{mybox}=[draw=mittelblau, fill=white, line width=2.5pt]
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\textwidth]{../gfx/Compare01.png}
+	\caption{Comparsion Strategies for random fleet}
+	\label{fig:comp01}
+\end{figure}
 
-\begin{figure}[H]
-\begin{minipage}[t]{.3\textwidth}
-\begin{tikzpicture}
-\node[draw=white, fill=white, line width=2.5pt,rounded corners] {
-  \includegraphics[keepaspectratio=true, width=1.0\columnwidth]{var_analytic_ct_EUB_Re.png}
-  };
-\end{tikzpicture}
- \caption*{\centering Regular uniform grids with B-splines.}
-\end{minipage}
-\quad
-%\fcolorbox{blue}{white}{
-\begin{minipage}[t]{.3\textwidth}
-\begin{tikzpicture}
-\node[draw=mittelblau, fill=white, line width=2.5pt,rounded corners] {
-  \includegraphics[keepaspectratio=true, width=\columnwidth]{var_analytic_ct_EUB_Va.png}
-};
-\end{tikzpicture}
-\caption*{\centering Adaptive uniform grids with B-splines.}
-\end{minipage}
-\quad
-\begin{minipage}[t]{.3\textwidth}
-\begin{tikzpicture}
-\node[draw=white, fill=white, line width=2.5pt,rounded corners] {
-  \includegraphics[keepaspectratio=true, width=\columnwidth]{var_analytic_ct_ECC_Va.png}
-    };
-\end{tikzpicture}
-  \caption*{\centering Adaptive Clenshaw-Curtis grids with polynomials.}
-\end{minipage}
-  \caption{ Variances of the CO$_2$ benchmark problem calculated with different grid types and basis functions. The adaptive uniform grids with B-splines need the smallest number of nodes $n$ for a satisfying approximation of the variance.}
+In figure \ref{fig:comp01} we see, that the Halton Strategy for 7 dimensions overtakes Sobol. This implies the same for 8 dimensions. Which is why we conclude that the Halton Strategy performs the best out of all the tested strategies. Note: The goal of the curves is to reach the top as fast as possible.
+This conclusion is also confirmed by figure \ref{fig:comp02} in which the total number of necessary shots is lowest for the Halton Strategy.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../gfx/Compare02.png}
+	\caption{Comparsion number of shots for random fleet}
+	\label{fig:comp02}
 \end{figure}
 
 

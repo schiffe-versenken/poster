@@ -1,8 +1,5 @@
-\beamer@endinputifotherversion {3.36pt}
-\select@language {english}
-\contentsline {section}{Motivation}
-\contentsline {section}{Variance Adaptive Refinement}
-\contentsline {section}{CO$_2$ Storage Benchmark }
-\contentsline {section}{Description}
-\contentsline {section}{Numerical Results}
+\babel@toc {english}{}
+\contentsline {section}{Motivation and Approach}
+\contentsline {section}{Strategies}
+\contentsline {section}{Results}
 \contentsline {section}{References}
